@@ -1,0 +1,39 @@
+node_modules/
+dist/
+.astro/
+
+# Local browser profiles and review artifacts
+/C:*/
+/.playwright-mcp/
+/reports/
+/previews/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.npmrc
+.netrc
+.git-credentials
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Temporary logs, Lighthouse output, and browser state
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+/coverage/
+/test-results/
+/playwright-report/
+/lighthouse*/
+/*.report.html
+/*.report.json
+/chrome-profile*/
+/chromium-profile*/
+/browser-profile*/

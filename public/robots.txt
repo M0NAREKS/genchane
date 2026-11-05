@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://genchane.com.tr/sitemap-index.xml

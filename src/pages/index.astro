@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import primaryLogo from '../assets/genchane-hero.png';
+import corporateLogo from '../../baskayalar.jpeg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Arrow from '../components/Arrow.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import InstagramLink from '../components/InstagramLink.astro';
+
+const principles = [
+  { number: '01', title: 'Ulaşılabilir hizmet.', description: 'Öğrencilerin ekonomik koşullarını ve günlük ihtiyaçlarını gözetiyor; uygun fiyatlı, kaliteli yiyecek ve içeceklere kolayca ulaşabilmelerini önemsiyoruz.' },
+  { number: '02', title: 'Kalite ve hijyen.', description: 'Güvenilir, hijyenik ve kaliteli hizmet anlayışını işimizin merkezine koyuyoruz. Her gün, aynı özenle çalışıyoruz.' },
+  { number: '03', title: 'Bir yere ait olmak.', description: 'Öğrencilerin kendilerini yalnızca bir müşteri olarak değil, ailemizin bir parçası olarak hissedebilecekleri bir ortam oluşturmayı hedefliyoruz.' },
+];
+const goals = [
+  { number: '01', title: 'Daha çok gence ulaşmak.', description: 'Mevcut hizmet alanlarımızı geliştirmeyi, yeni lokasyonlarda faaliyet göstermeyi ve öğrenci dostu yaklaşımımızı daha geniş kitlelere ulaştırmayı hedefliyoruz.' },
+  { number: '02', title: 'Birlikte gelişmek.', description: 'Ürün çeşitliliğimizi artırmak, dijitalleşmeye yatırım yapmak ve öğrencilerle kurduğumuz iletişimi güçlendirmek istiyoruz.' },
+  { number: '03', title: 'Kalıcı değer oluşturmak.', description: 'Gençlere çalışma ve deneyim fırsatları sunmayı, yerel üreticilerle iş birlikleri geliştirmeyi ve toplumsal fayda sağlayan projelere daha fazla yer vermeyi önemsiyoruz.' },
+];
+---
+<BaseLayout>
+  <Header />
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="small-line" aria-hidden="true"></span> ÖĞRENCİ DOSTU YİYECEK &amp; İÇECEK</p>
+          <h1 id="hero-title">Gençlerin<br class="desktop-break" /> yanında.<br /><span>Hayatın içinde.</span></h1>
+          <p class="hero-description">Üniversite öğrencileri için uygun fiyatlı, kaliteli ve hijyenik yiyecek ve içecek sunuyoruz.</p>
+          <div class="hero-actions">
+            <a class="button" href="#story">Bizi tanıyın <Arrow direction="down" /></a>
+            <InstagramLink label="Instagram’da buluşalım" />
+          </div>
+        </div>
+        <figure class="hero-art">
+          <Image src={primaryLogo} alt="GENCHANE — fincan ve çatal bıçak çizimleriyle krem ve turuncu marka logosu" widths={[390, 640, 768, 914]} sizes="(min-width: 1051px) 610px, (min-width: 700px) 46vw, calc(100vw - 40px)" width={primaryLogo.width} height={primaryLogo.height} format="webp" quality={90} loading="eager" fetchpriority="high" />
+          <figcaption>Başkayalar Kantin İşletmeciliği'nin tescilli markası.</figcaption>
+        </figure>
+      </div>
+      <div class="shell hero-bottom">
+        <p>Öğrenci odaklı. <span>Samimi. Birlikte.</span></p>
+        <a href="#approach">GENCHANE'yi keşfet <Arrow direction="down" /></a>
+      </div>
+    </section>
+
+    <section id="approach" class="approach section-space" aria-labelledby="approach-title">
+      <div class="shell approach-layout">
+        <div class="approach-intro">
+          <SectionLabel number="01">YAKLAŞIMIMIZ</SectionLabel>
+          <h2 id="approach-title">İyi bir mola.<br /><span class="accent-text">Güçlü bir bağ.</span></h2>
+          <p>Bizim için mesele yalnızca yiyecek ve içecek sunmak değil. Gençlerin günlük hayatına değer katmak, ihtiyaçlarını anlamak ve yanlarında olmak.</p>
+        </div>
+        <div class="principles">
+          {principles.map(({ number, title, description }) => (
+            <article class="principle">
+              <span class="item-number" aria-hidden="true">{number}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="story section-space" aria-labelledby="story-title">
+      <div class="shell story-grid">
+        <div class="story-heading">
+          <SectionLabel number="02">BİZ KİMİZ?</SectionLabel>
+          <h2 id="story-title">Küçük bir adım.<br />İçten bir hikâye.</h2>
+          <p class="story-intro">2022'de Başkayalar Kantin İşletmeciliği olarak yola çıktık. Odağımızda en başından beri gençler vardı.</p>
+        </div>
+        <div class="corporate-panel">
+          <p class="corporate-overline"><span aria-hidden="true"></span> MARKAMIZIN ARKASINDA</p>
+          <Image src={corporateLogo} alt="Başkayalar Kantin Hizmetleri — fincan, yeşil dallar ve 2022 yılı bulunan işletme logosu" widths={[320, 480, 640]} sizes="(min-width: 900px) 360px, (min-width: 700px) 300px, 260px" width={1024} height={1024} format="webp" quality={90} loading="lazy" />
+          <div class="corporate-origin">
+            <span class="origin-year">2022</span>
+            <p class="corporate-caption">Başkayalar Kantin İşletmeciliği'nin başlangıcı.</p>
+          </div>
+        </div>
+        <div class="story-copy">
+          <p>Trakya Üniversitesi bünyesindeki eğitim kurumlarında hizmet vermeye başladık. Öğrencilerin beklentilerini dinleyerek, kampanyalar ve sosyal etkinliklerle hizmetimizi geliştirdik.</p>
+          <p>Öğrencilerimizle kurduğumuz güçlü bağdan GENCHANE doğdu. Markamızı oluşturduk ve tescilledik. Bugün aynı heyecanla, daha fazla insana ulaşmak için çalışıyoruz.</p>
+          <div class="story-note"><p>Bizim için başarı; gençlerin hayatına dokunmak, istihdam oluşturmak ve topluma değer katmak.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="future" class="future section-space" aria-labelledby="future-title">
+      <div class="shell">
+        <SectionLabel number="03">GELECEK HEDEFLERİMİZ</SectionLabel>
+        <div class="future-heading">
+            <h2 id="future-title">Yolumuz uzun.<br /><span>Heyecanımız<br class="desktop-break" /> ilk günkü gibi.</span></h2>
+            <p>GENCHANE'yi gençlerin kendilerini ait hissettikleri, öğrenci dostu yaklaşımıyla örnek gösterilen bir markaya dönüştürmek istiyoruz.</p>
+        </div>
+        <ol class="goals">
+            {goals.map(({ number, title, description }) => (
+              <li class="goal">
+                <span class="item-number" aria-hidden="true">{number}</span>
+                <div><h3>{title}</h3><p>{description}</p></div>
+              </li>
+            ))}
+        </ol>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
