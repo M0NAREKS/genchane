@@ -146,7 +146,7 @@ h1 span { color: var(--color-peach); }
   /* Keep the brand and a single row of navigation in two compact bands. */
   .header-inner { flex-direction: column; align-items: flex-start; padding-block: 12px 8px; gap: 4px; }
   .brand-link { font-size: 25px; }
-  .site-header nav { width: min(100%, 420px); gap: 8px; justify-content: space-between; font-size: 14px; }
+  .site-header nav { width: fit-content; max-width: 100%; gap: clamp(12px, max(4vw, calc(14vw - 36px)), 28px); justify-content: flex-start; font-size: 14px; }
   .site-header nav a { gap: 0; white-space: nowrap; }
   .site-header nav .arrow, .nav-label-full { display: none; }
   .nav-label-mobile { display: inline; }
