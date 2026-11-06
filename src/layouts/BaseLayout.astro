@@ -2,10 +2,55 @@
 import '@fontsource-variable/bricolage-grotesque';
 import heroFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import primaryLogo from '../assets/genchane-hero.png';
+import corporateLogo from '../../baskayalar.jpeg';
 const title = 'GENCHANE — Öğrenci Dostu Yiyecek ve İçecek';
 const description = "GENCHANE, Başkayalar Kantin İşletmeciliği'nin tescilli yiyecek ve içecek markasıdır. Öğrenci odaklı hizmet anlayışımızı, hikâyemizi ve hedeflerimizi keşfedin.";
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const socialImage = new URL('/social/genchane-og.png', Astro.site).href;
+const websiteUrl = new URL('/', Astro.site).href;
+const websiteId = `${websiteUrl}#website`;
+const organizationId = `${websiteUrl}#organization`;
+const brandId = `${websiteUrl}#brand`;
+const [brandLogoImage, corporateLogoImage] = await Promise.all([
+  getImage({ src: primaryLogo, width: 914, format: 'webp', quality: 90 }),
+  getImage({ src: corporateLogo, width: 640, format: 'webp', quality: 90 }),
+]);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: 'GENCHANE',
+      url: websiteUrl,
+      inLanguage: 'tr-TR',
+      publisher: { '@id': organizationId },
+      about: { '@id': brandId },
+    },
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'Başkayalar Kantin İşletmeciliği',
+      url: websiteUrl,
+      description: '2022 yılında faaliyete başlayan Başkayalar Kantin İşletmeciliği, GENCHANE markasının işletmecisidir.',
+      brand: { '@id': brandId },
+      logo: new URL(corporateLogoImage.src, websiteUrl).href,
+    },
+    {
+      '@type': 'Brand',
+      '@id': brandId,
+      name: 'GENCHANE',
+      url: websiteUrl,
+      description: 'Başkayalar Kantin İşletmeciliği’nin tescilli markası.',
+      logo: new URL(brandLogoImage.src, websiteUrl).href,
+      sameAs: ['https://www.instagram.com/genchane22/'],
+    },
+  ],
+};
+// Escape HTML delimiters so serialized values cannot close the JSON-LD script.
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang="tr">
@@ -38,6 +83,7 @@ const socialImage = new URL('/social/genchane-og.png', Astro.site).href;
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <title>{title}</title>
+    {Astro.url.pathname === '/' && <script is:inline type="application/ld+json" set:html={structuredDataJson} />}
   </head>
   <body id="top">
     <a class="skip-link" href="#main">İçeriğe geç</a>
